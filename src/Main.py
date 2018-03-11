@@ -22,7 +22,7 @@ for o in structBuilder.circle:
 
 line = ImgProc.bresenhamLine(0,0,100,100)
 
-structBuilder.createRays()
+#structBuilder.createRays()
 print(structBuilder.rays)
 
 cv2.imshow('Tomograf', img)
