@@ -4,7 +4,7 @@ from ImageProcessing import Pixel
 from ImageProcessing import PProcessing
 
 RADIUS = 200
-ITERATIONS = 50
+ITERATIONS = 200
 
 class Ray:
     def __init__(self, startPixel, endPixel):
@@ -44,4 +44,17 @@ class StructBuilder:
                 list.append(Ray(startPixel,
                                 self.circle[(startWidth - j * 2 * int(self.detectors_width / self.detectors))%360]))
             self.rays.append(list)
+
+    def getMeanFromRay(self, ray, img):
+        colorList = []
+        for r in ray:
+            list = []
+            for pixel in r.pixels:
+                list.append(img[pixel.x-1][pixel.y-1])
+            colorList.append(list)
+        return [float(sum(col))/len(col) for col in zip(*colorList)]
+
+
+
+
 
