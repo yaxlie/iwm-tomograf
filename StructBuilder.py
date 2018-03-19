@@ -40,9 +40,15 @@ class StructBuilder:
             startPixel = self.circle[startAngle%360]
 
             startWidth = startAngle + 180 + int(self.detectors_width/2)
+            endWidth = startAngle + 180 - int(self.detectors_width / 2)
+            d = (startWidth - endWidth)/(self.detectors-1)
+
+            print("start",startAngle%360, d)
+            # self.circle[int(j * (startWidth - endWidth) / self.detectors) % 360]))
             for j in range(0,self.detectors):
+                print(int(startWidth - j * int(d))%360)
                 list.append(Ray(startPixel,
-                                self.circle[(startWidth - j * 2 * int(self.detectors_width / self.detectors))%360]))
+                                self.circle[int(startWidth - j * d)%360]))
             self.rays.append(list)
 
     def getMeanFromRay(self, ray, img):

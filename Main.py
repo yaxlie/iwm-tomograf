@@ -12,9 +12,9 @@ import numpy as np
 
 WIDTH = 400
 HEIGHT = 400
-DETECTORS = 15
+DETECTORS = 12
 DELTHA_ANGLE = 2
-DETECTORS_WIDTH = 25
+DETECTORS_WIDTH = 30
 IMG_PATH = 'res/image_01.png'
 
 imgProc = PProcessing()
