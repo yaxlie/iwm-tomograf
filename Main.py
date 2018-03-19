@@ -14,8 +14,8 @@ WIDTH = 400
 HEIGHT = 400
 DETECTORS = 12
 DELTHA_ANGLE = 2
-DETECTORS_WIDTH = 30
-IMG_PATH = 'res/image_01.png'
+DETECTORS_WIDTH = 20
+IMG_PATH = 'res/image_03.png'
 
 imgProc = PProcessing()
 structBuilder = StructBuilder(WIDTH, HEIGHT, DELTHA_ANGLE, DETECTORS, DETECTORS_WIDTH)

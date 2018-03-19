@@ -43,10 +43,10 @@ class StructBuilder:
             endWidth = startAngle + 180 - int(self.detectors_width / 2)
             d = (startWidth - endWidth)/(self.detectors-1)
 
-            print("start",startAngle%360, d)
+            # print("start",startAngle%360, d)
             # self.circle[int(j * (startWidth - endWidth) / self.detectors) % 360]))
             for j in range(0,self.detectors):
-                print(int(startWidth - j * int(d))%360)
+                # print(int(startWidth - j * int(d))%360)
                 list.append(Ray(startPixel,
                                 self.circle[int(startWidth - j * d)%360]))
             self.rays.append(list)
