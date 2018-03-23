@@ -1,9 +1,6 @@
-import cv2
 import numpy as np
-from ImageProcessing import Pixel
-from ImageProcessing import PProcessing
-
-RADIUS = 300
+from src.ImageProcessing import Pixel
+from src.ImageProcessing import PProcessing
 
 class Ray:
     def __init__(self, startPixel, endPixel):
@@ -12,7 +9,8 @@ class Ray:
                 int(startPixel.x), int(startPixel.y), int(endPixel.x), int(endPixel.y))
 
 class StructBuilder:
-    def __init__(self, width, height, deltha_angle, detectors, detectors_width, accuracy, iterations):
+    def __init__(self, width, height, deltha_angle, detectors,
+                 detectors_width, accuracy, iterations, radius):
         self.width = width
         self.height = height
         self.deltha_angle = deltha_angle
@@ -25,7 +23,7 @@ class StructBuilder:
         if self.detectors < 2:
             self.detectors = 2
 
-        self.circle = self.pointsInCircum(RADIUS, 360 * accuracy)
+        self.circle = self.pointsInCircum(radius, 360 * accuracy)
         pass
 
     def pointsInCircum(self, r, n=100):
