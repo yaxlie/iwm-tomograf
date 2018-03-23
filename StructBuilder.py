@@ -51,7 +51,7 @@ class StructBuilder:
                                 self.circle[int(startWidth - j * d)%(360*self.accuracy)]))
             self.rays.append(list)
 
-    def getMeanFromRay(self, ray, img):
+    def getMeanFromRays(self, ray, img):
         colorList = []
         for r in ray:
             list = []
@@ -60,6 +60,14 @@ class StructBuilder:
             colorList.append(list)
         return [float(sum(col))/len(col) for col in zip(*colorList)]
 
+    def getRaysMean(self, rays, img):
+        colorList = []
+        for r in rays:
+            list = []
+            for pixel in r.pixels:
+                list.append(img[pixel.x-1][pixel.y-1])
+            colorList.append(sum(list) / float(len(list)))
+        return colorList
 
 
 
