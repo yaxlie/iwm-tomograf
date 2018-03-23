@@ -3,8 +3,7 @@ import numpy as np
 from ImageProcessing import Pixel
 from ImageProcessing import PProcessing
 
-RADIUS = 200
-ITERATIONS = 200
+RADIUS = 300
 
 class Ray:
     def __init__(self, startPixel, endPixel):
@@ -13,19 +12,20 @@ class Ray:
                 int(startPixel.x), int(startPixel.y), int(endPixel.x), int(endPixel.y))
 
 class StructBuilder:
-    def __init__(self, width, height, deltha_angle, detectors, detectors_width):
+    def __init__(self, width, height, deltha_angle, detectors, detectors_width, accuracy, iterations):
         self.width = width
         self.height = height
         self.deltha_angle = deltha_angle
         self.detectors = detectors
-        self.detectors_width = detectors_width
+        self.detectors_width = detectors_width * accuracy
         self.rays = []
-        self.iterations = ITERATIONS
+        self.iterations = iterations
+        self.accuracy = accuracy
 
         if self.detectors < 2:
             self.detectors = 2
 
-        self.circle = self.pointsInCircum(RADIUS, 360)
+        self.circle = self.pointsInCircum(RADIUS, 360 * accuracy)
         pass
 
     def pointsInCircum(self, r, n=100):
@@ -37,10 +37,10 @@ class StructBuilder:
         for i in range(0,self.iterations):
             list = []
             startAngle = i*int(self.deltha_angle)
-            startPixel = self.circle[startAngle%360]
+            startPixel = self.circle[startAngle%(360*self.accuracy)]
 
-            startWidth = startAngle + 180 + int(self.detectors_width/2)
-            endWidth = startAngle + 180 - int(self.detectors_width / 2)
+            startWidth = startAngle + 180 * self.accuracy + int(self.detectors_width/2)
+            endWidth = startAngle + 180 * self.accuracy - int(self.detectors_width / 2)
             d = (startWidth - endWidth)/(self.detectors-1)
 
             # print("start",startAngle%360, d)
@@ -48,7 +48,7 @@ class StructBuilder:
             for j in range(0,self.detectors):
                 # print(int(startWidth - j * int(d))%360)
                 list.append(Ray(startPixel,
-                                self.circle[int(startWidth - j * d)%360]))
+                                self.circle[int(startWidth - j * d)%(360*self.accuracy)]))
             self.rays.append(list)
 
     def getMeanFromRay(self, ray, img):

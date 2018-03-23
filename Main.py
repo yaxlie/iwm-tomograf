@@ -10,20 +10,27 @@ import time
 from matplotlib import pyplot as plt
 import numpy as np
 
-WIDTH = 400
-HEIGHT = 400
-DETECTORS = 12
-DELTHA_ANGLE = 2
-DETECTORS_WIDTH = 20
+WIDTH = 600
+HEIGHT = 600
+DETECTORS = 30
+DELTHA_ANGLE = 1
+DETECTORS_WIDTH = 30
+ITERATIONS = 300
+
+#zmiana dokladnosci punktów. np. dla accuracy = 2 -> 1 stopien = 1/2 stopnia
+# -> zamiast 360, 720 punktów okręgu
+ACCURACY = 4
+
 IMG_PATH = 'res/image_03.png'
 
 imgProc = PProcessing()
-structBuilder = StructBuilder(WIDTH, HEIGHT, DELTHA_ANGLE, DETECTORS, DETECTORS_WIDTH)
+structBuilder = StructBuilder(WIDTH, HEIGHT, DELTHA_ANGLE, DETECTORS,
+                              DETECTORS_WIDTH, ACCURACY, ITERATIONS)
 
 
-imgGrey = rgb2gray(cv2.imread(IMG_PATH))
 img = cv2.imread(IMG_PATH)
-img = cv2.resize(img, (400, 400))
+img = cv2.resize(img, (WIDTH, HEIGHT))
+imgGrey = rgb2gray(img)
 
 for o in structBuilder.circle:
     cv2.circle(img, (int(o.x), int(o.y)), 2, (0, 0, 255), -1)
