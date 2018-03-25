@@ -78,12 +78,11 @@ class DisplayImages:
             cv2.waitKey(1)
             i1 += 1
 
-
-        #new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
-        new_img = new_img / np.amax(new_img) #normalizacja kolorów
-        #cv2.imshow('SinogramZoom', new_img)
         self.sinogram = np.copy(new_img)
-        cv2.imshow('Tomograf', img)
+
+        new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
+        new_img = new_img / np.amax(new_img) #normalizacja kolorów
+        cv2.imshow('SinogramZoom', new_img)
 
         #SINOGRAM -> OBRAZEK
         self.revertImage()
