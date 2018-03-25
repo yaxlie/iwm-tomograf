@@ -1,8 +1,10 @@
 import cv2
 from skimage.color import rgb2gray
+from skimage.exposure import rescale_intensity, adjust_gamma
+from skimage.filters import gaussian
 
-from src.ImageProcessing import PProcessing
-from src.StructBuilder import StructBuilder
+from ImageProcessing import PProcessing
+from StructBuilder import StructBuilder
 import time
 import numpy as np
 
@@ -77,9 +79,9 @@ class DisplayImages:
             i1 += 1
 
 
-        new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
+        #new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
         new_img = new_img / np.amax(new_img) #normalizacja kolorów
-        cv2.imshow('SinogramZoom', new_img)
+        #cv2.imshow('SinogramZoom', new_img)
         self.sinogram = np.copy(new_img)
         cv2.imshow('Tomograf', img)
 
@@ -90,35 +92,21 @@ class DisplayImages:
         cv2.destroyAllWindows()
 
 
-    # TO AKURAT JEST ŻAŁOSNE (ma odwracać sinogram na oryginalny obrazek)
-    # Obraca sinogram i dodaje go do poprzednich obróconych sinogramów. Później normalizuje wynik.
-    # Raczej nie tak ma działać
-
     def revertImage(self):
-        ITERATIONS = 60
-        DELTA_ANGLE = 12
+        img = np.zeros([400, 400, 3], dtype=np.float)
+        img = rgb2gray(img)
+        for y,iteration in enumerate(self.structBuilder.rays):
+            for x,ray in enumerate(iteration):
+                for px in ray.pixels:
+                    img[px.x-1][px.y-1]+=self.sinogram[y][x]
 
-        img = self.sinogram
-        img = rezise_image(img, max(img.shape), max(img.shape))
-
-        dst = np.copy(img)
-        tmp = np.copy(img)
-
+        img = rescale_intensity(img)
+        img = adjust_gamma(img, 2)
+        img = gaussian(img, sigma=3)
+        img = rescale_intensity(img)
         cv2.imshow('Reversion', img)
         cv2.moveWindow('Reversion', RIGHT_SHIFT, TOP_SHIFT)
-
-        for i in range(2,60+2):
-            rows, cols = np.copy(img).shape
-            M = cv2.getRotationMatrix2D((cols / 2, rows / 2), DELTA_ANGLE, 1)
-            tmp = cv2.warpAffine(tmp, M, (cols,  rows))
-
-            dst = dst + tmp
-            cv2.imshow('Reversion', dst)
-            # time.sleep(1)
-            cv2.waitKey(1)
-
-        self.revertedImage = dst
-        cv2.imshow('Reversion', (dst/ITERATIONS) / np.amax(dst/ITERATIONS))
+        # time.sleep(1)
         cv2.waitKey(1)
 
 
