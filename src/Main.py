@@ -1,40 +1,35 @@
-import cv2
-from skimage.color import rgb2gray
-
-from src import Settings
-from src.Display import DisplayImages
-from src.ImageProcessing import PProcessing
-from src.StructBuilder import StructBuilder
-import time
-import numpy as np
+from src import ImageProcessing
+from src import Display
+from src import StructBuilder
 from tkinter import *
 
-WIDTH = 400
-HEIGHT = 400
-RADIUS = 200
-DETECTORS = 40
-DELTHA_ANGLE = 12
-DETECTORS_WIDTH = 90
-ITERATIONS = 60
-IMG_PATH = './res/image_04.png'
+WIDTH = 400                         # wymiary wyjściowego obrazka
+HEIGHT = 400                        # - || -
+RADIUS = 200                        # promień rysowanego okręgu
+DETECTORS = 40                      # liczba detektorów
+DELTHA_ANGLE = 6                   # kąt przmieszczenia generatora w każdej iteracji
+DETECTORS_WIDTH = 90                # rozpiętość łuku, na którym znajdują się detektory
+ITERATIONS = 60                     # liczba obrotów generatora
+IMG_PATH = './res/image_04.png'     # lokalizacja zdjęcia
+ACCURACY = 4                        # jak gęsto tworzyć punkty dla okręgu
 
-#zmiana dokladnosci punktów. np. dla accuracy = 2 -> 1 stopien = 1/2 stopnia
-# -> zamiast 360, 720 punktów okręgu
-ACCURACY = 4
-
-
-# settings = Settings.Settings(DETECTORS, DELTHA_ANGLE, DETECTORS_WIDTH, ITERATIONS, ACCURACY)
 
 def start():
-    imgProc = PProcessing()
-    structBuilder = StructBuilder(WIDTH, HEIGHT, deltha.get()*ACCURACY, detectors.get(),
+    #Do tworzenia pixeli i odcinków algorytmem Bresenhama
+    imgProc = ImageProcessing.PProcessing()
+
+    #Tworzenie okręgu i tablicy promieni z każdej iteracji (ogólnie zbieranie informacji)
+    structBuilder = StructBuilder.StructBuilder(WIDTH, HEIGHT, deltha.get()*ACCURACY, detectors.get(),
                                   d_width.get(), ACCURACY, iterations.get(), RADIUS)
-    displayImages = DisplayImages(entry.get(), imgProc, structBuilder, WIDTH, HEIGHT,
+
+    #Wyświetlanie obrazków, tworzenie sinogramu i odwzorowanie oryginalnego obrazka
+    displayImages = Display.DisplayImages(entry.get(), imgProc, structBuilder, WIDTH, HEIGHT,
                                   iterations.get(), detectors.get())
 
     displayImages.showImages()
 
 
+#Dalej tylko UI
 def addLabel(text):
     var = StringVar()
     label = Label(window, textvariable=var, relief=RAISED)

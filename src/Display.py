@@ -23,6 +23,7 @@ class DisplayImages:
         self.sinogram = None
         self.revertedImage = None
 
+    #showImages TO OGÓLNIE JEST NIEZŁY BAŁAGAN, NAWET NIE CHCE MI SIĘ TEGO SPRZĄTAĆ
     def showImages(self):
         img = cv2.imread(self.imgPath)
         img = cv2.resize(img, (self.height, self.width))
@@ -78,49 +79,48 @@ class DisplayImages:
         new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
         cv2.imshow('SinogramZoom', new_img)
         self.sinogram = np.copy(new_img)
-
         cv2.imshow('Tomograf', img)
 
+        #SINOGRAM -> OBRAZEK
         self.revertImage()
 
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+
+    # TO AKURAT JEST ŻAŁOSNE (ma odwracać sinogram na oryginalny obrazek)
+    # Obraca sinogram i dodaje go do poprzednich obróconych sinogramów. Później normalizuje wynik.
+    # Raczej nie tak ma działać
+
     def revertImage(self):
+        ITERATIONS = 60
+        DELTA_ANGLE = 12
+
         img = self.sinogram
         img = rezise_image(img, max(img.shape), max(img.shape))
 
-        # img = self.get_one_image([np.copy(zeros), img])
-        # dst = self.get_one_image([np.copy(img), np.copy(zeros)])
-        # tmp = self.get_one_image([np.copy(img), np.copy(zeros)])
-
         dst = np.copy(img)
         tmp = np.copy(img)
-        x = None
 
         cv2.imshow('Reversion', img)
         cv2.moveWindow('Reversion', RIGHT_SHIFT, TOP_SHIFT)
 
-        for i in range(2,60):
+        for i in range(2,60+2):
             rows, cols = np.copy(img).shape
-            M = cv2.getRotationMatrix2D((cols / 2, rows / 2), 12, 1)
-            # dst = cv2.warpAffine(img, M, (cols, rows))
+            M = cv2.getRotationMatrix2D((cols / 2, rows / 2), DELTA_ANGLE, 1)
             tmp = cv2.warpAffine(tmp, M, (cols,  rows))
-            # dst = 0.5 * tmp
 
-            x = dst + tmp
-            # print(np.amax(x), x[1][1])
-            cv2.imshow('Reversion', x)
+            dst = dst + tmp
+            cv2.imshow('Reversion', dst)
             # time.sleep(1)
             cv2.waitKey(1)
-            dst = np.copy(x)
 
         self.revertedImage = dst
-        cv2.imshow('Reversion', (x/60) / np.amax(x/60))
-        # time.sleep(1)
+        cv2.imshow('Reversion', (dst/ITERATIONS) / np.amax(dst/ITERATIONS))
         cv2.waitKey(1)
 
 
+#Uzupełnia obrazek marginesami z każdej strony, żeby oryginał był na środku
 def rezise_image(img, w, h):
     height, width = img.shape
     x = w - width
