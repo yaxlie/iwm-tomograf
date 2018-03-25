@@ -58,13 +58,14 @@ class DisplayImages:
         for rays in self.structBuilder.rays:
             img = np.copy(imgOrigin)
 
+#jeśli jest za dużo promieni do rysowania, program działa bardzo wolno
             if len(rays) <= 20:
                 for ray in rays:
                     for pixel in ray.pixels:
                         cv2.circle(img, (int(pixel.x), int(pixel.y)), 1, (0, 255, 0), -1)
             else:
                 for i in range(0, 20):
-                    for pixel in rays[i * (int)(len(rays) / 20)].pixels:
+                    for pixel in rays[(int)(i * len(rays) / 20)].pixels:
                         cv2.circle(img, (int(pixel.x), int(pixel.y)), 1, (0, 255, 0), -1)
 
             for j in range(0, w):
@@ -77,6 +78,7 @@ class DisplayImages:
 
 
         new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
+        new_img = new_img / np.amax(new_img) #normalizacja kolorów
         cv2.imshow('SinogramZoom', new_img)
         self.sinogram = np.copy(new_img)
         cv2.imshow('Tomograf', img)

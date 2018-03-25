@@ -19,7 +19,7 @@ def start():
     imgProc = ImageProcessing.PProcessing()
 
     #Tworzenie okręgu i tablicy promieni z każdej iteracji (ogólnie zbieranie informacji)
-    structBuilder = StructBuilder.StructBuilder(WIDTH, HEIGHT, deltha.get()*ACCURACY, detectors.get(),
+    structBuilder = StructBuilder.StructBuilder(WIDTH, HEIGHT, deltha.get(), detectors.get(),
                                   d_width.get(), ACCURACY, iterations.get(), RADIUS)
 
     #Wyświetlanie obrazków, tworzenie sinogramu i odwzorowanie oryginalnego obrazka

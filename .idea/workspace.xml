@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dd9a5a48-3c8c-4125-a407-7038602f736b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/res/image_03.png" afterPath="$PROJECT_DIR$/res/image_03.png" />
       <change beforePath="$PROJECT_DIR$/src/Display.py" afterPath="$PROJECT_DIR$/src/Display.py" />
-      <change beforePath="$PROJECT_DIR$/src/ImageProcessing.py" afterPath="$PROJECT_DIR$/src/ImageProcessing.py" />
       <change beforePath="$PROJECT_DIR$/src/Main.py" afterPath="$PROJECT_DIR$/src/Main.py" />
-      <change beforePath="$PROJECT_DIR$/src/Settings.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/StructBuilder.py" afterPath="$PROJECT_DIR$/src/StructBuilder.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,8 +30,8 @@
       <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+            <state relative-caret-position="108">
+              <caret line="21" column="75" lean-forward="false" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="75" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -42,8 +42,8 @@
       <file leaf-file-name="Display.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Display.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-930">
-              <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="252">
+              <caret line="67" column="48" lean-forward="false" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <file leaf-file-name="StructBuilder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StructBuilder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+            <state relative-caret-position="-52">
+              <caret line="41" column="84" lean-forward="false" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -87,11 +87,11 @@
         <option value="$PROJECT_DIR$/StructBuilder.py" />
         <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/src/Interface.py" />
-        <option value="$PROJECT_DIR$/src/StructBuilder.py" />
         <option value="$PROJECT_DIR$/src/Sliders.py" />
         <option value="$PROJECT_DIR$/src/Settings.py" />
         <option value="$PROJECT_DIR$/src/ImageProcessing.py" />
         <option value="$PROJECT_DIR$/src/Main.py" />
+        <option value="$PROJECT_DIR$/src/StructBuilder.py" />
         <option value="$PROJECT_DIR$/src/Display.py" />
       </list>
     </option>
@@ -263,20 +263,49 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ImageProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Display.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StructBuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="34" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Settings.py" />
     <entry file="file://$PROJECT_DIR$/src/Display.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1206">
@@ -482,22 +511,7 @@
     <entry file="file://$PROJECT_DIR$/src/Main.py" />
     <entry file="file://$PROJECT_DIR$/src/StructBuilder.py" />
     <entry file="file://$PROJECT_DIR$/src/ImageProcessing.py" />
-    <entry file="file://$PROJECT_DIR$/src/StructBuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="36" column="34" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Settings.py" />
     <entry file="file://$PROJECT_DIR$/src/ImageProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -506,10 +520,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/StructBuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52">
+          <caret line="41" column="84" lean-forward="false" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        <state relative-caret-position="108">
+          <caret line="21" column="75" lean-forward="false" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="75" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -518,8 +540,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Display.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-930">
-          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        <state relative-caret-position="252">
+          <caret line="67" column="48" lean-forward="false" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
