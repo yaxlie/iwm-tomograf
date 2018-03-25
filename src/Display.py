@@ -6,8 +6,9 @@ from src.StructBuilder import StructBuilder
 import time
 import numpy as np
 
-SCALING = 6
+SCALING = 4
 RIGHT_SHIFT = 350
+TOP_SHIFT = 400
 
 class DisplayImages:
 
@@ -19,6 +20,8 @@ class DisplayImages:
         self.height = height
         self.iterations = iterations
         self.detectors = detectors
+        self.sinogram = None
+        self.revertedImage = None
 
     def showImages(self):
         img = cv2.imread(self.imgPath)
@@ -71,9 +74,71 @@ class DisplayImages:
             cv2.waitKey(1)
             i1 += 1
 
+
         new_img = cv2.resize(new_img, (w * SCALING, h * SCALING))
         cv2.imshow('SinogramZoom', new_img)
+        self.sinogram = np.copy(new_img)
 
         cv2.imshow('Tomograf', img)
+
+        self.revertImage()
+
         cv2.waitKey(0)
         cv2.destroyAllWindows()
+
+    def revertImage(self):
+        img = self.sinogram
+        img = rezise_image(img, max(img.shape), max(img.shape))
+
+        # img = self.get_one_image([np.copy(zeros), img])
+        # dst = self.get_one_image([np.copy(img), np.copy(zeros)])
+        # tmp = self.get_one_image([np.copy(img), np.copy(zeros)])
+
+        dst = np.copy(img)
+        tmp = np.copy(img)
+        x = None
+
+        cv2.imshow('Reversion', img)
+        cv2.moveWindow('Reversion', RIGHT_SHIFT, TOP_SHIFT)
+
+        for i in range(2,60):
+            rows, cols = np.copy(img).shape
+            M = cv2.getRotationMatrix2D((cols / 2, rows / 2), 12, 1)
+            # dst = cv2.warpAffine(img, M, (cols, rows))
+            tmp = cv2.warpAffine(tmp, M, (cols,  rows))
+            # dst = 0.5 * tmp
+
+            x = dst + tmp
+            # print(np.amax(x), x[1][1])
+            cv2.imshow('Reversion', x)
+            # time.sleep(1)
+            cv2.waitKey(1)
+            dst = np.copy(x)
+
+        self.revertedImage = dst
+        cv2.imshow('Reversion', (x/60) / np.amax(x/60))
+        # time.sleep(1)
+        cv2.waitKey(1)
+
+
+def rezise_image(img, w, h):
+    height, width = img.shape
+    x = w - width
+    y = h - height
+
+    i = 0
+    while i < x:
+        img = cv2.copyMakeBorder(img, 0, 0, 1, 0, cv2.BORDER_CONSTANT)
+        i+=1
+        if i < x:
+            img = cv2.copyMakeBorder(img, 0, 0, 0, 1, cv2.BORDER_CONSTANT)
+            i += 1
+    i = 0
+    while i < y:
+        img = cv2.copyMakeBorder(img, 1, 0, 0, 0, cv2.BORDER_CONSTANT)
+        i += 1
+        if i < y:
+            img = cv2.copyMakeBorder(img, 0, 1, 0, 0, cv2.BORDER_CONSTANT)
+            i += 1
+
+    return img
